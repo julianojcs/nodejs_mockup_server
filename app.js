@@ -51,6 +51,14 @@ app.get('/home', cors(CORS_ALLOW_ALL ? null : corsOptions), (req, res) => {
   res.render('home', { persons: persons })
 })
 
+app.get('/hello', cors(CORS_ALLOW_ALL ? null : corsOptions), (req, res) => {
+  return res.json({ message: 'Hello World!' })
+})
+
+app.get('/test', cors(CORS_ALLOW_ALL ? null : corsOptions), (req, res) => {
+  return res.send('<p>Test page.</p>')
+})
+
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS')
