@@ -6,7 +6,7 @@ import cors from 'cors'
 
 const port = parseInt(process.env.PORT)
 
-if (!process.env.port) {
+if (!port) {
   throw new Error(
     'The PORT environment variable is required but was not specified.'
   )
