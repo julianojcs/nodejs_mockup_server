@@ -5,7 +5,7 @@ import express from 'express'
 import cors from 'cors'
 
 const port = parseInt(process.env.PORT) || 4000
-
+console.log(port)
 if (!port) {
   throw new Error(
     'The PORT environment variable is required but was not specified.'
