@@ -119,7 +119,7 @@ mongoose
   .then(() => {
     app.listen({ port }, '0.0.0.0', () => {
       console.log(
-        `🚀 Server ready at https://imenu4u.herokuapp.com/${
+        `🚀 Server ready at https://api-mockup-jcs.herokuapp.com/${
           server.graphqlPath
         } (${new Date().toLocaleString()})`
       )
@@ -128,3 +128,4 @@ mongoose
   .catch((err) => {
     console.log(err)
   })
+  
