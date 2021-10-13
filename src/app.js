@@ -4,7 +4,7 @@ dotenv.config()
 import express from 'express'
 import cors from 'cors'
 
-const port = parseInt(process.env.PORT)
+const port = parseInt(process.env.PORT) || 4000
 
 if (!port) {
   throw new Error(
@@ -28,7 +28,7 @@ console.log(persons)
 
 const app = express()
 app.set('view engine', 'ejs')
-app.set('views', './views')
+app.set('views', './src/views')
 
 const whitelist =
   process.env.CORS_WHITELIST.split(' ')[0] !== ''
@@ -45,7 +45,9 @@ const corsOptions = {
     }
   }
 }
-const CORS_ALLOW_ALL = !!process.env.CORS_ALLOW_ALL
+const CORS_ALLOW_ALL = Boolean(process.env.CORS_ALLOW_ALL)
+
+console.log('CORS_ALLOW_ALL:', CORS_ALLOW_ALL)
 
 app.get('/home', cors(CORS_ALLOW_ALL ? null : corsOptions), (req, res) => {
   res.render('home', { persons: persons })
@@ -59,17 +61,17 @@ app.get('/test', cors(CORS_ALLOW_ALL ? null : corsOptions), (req, res) => {
   return res.send('<p>Test page.</p>')
 })
 
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*')
-  res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS')
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
-  if (req.method === 'OPTIONS') {
-    return res.sendStatus(200)
-  }
-  next()
-})
+// app.use((req, res, next) => {
+//   res.setHeader('Access-Control-Allow-Origin', '*')
+//   res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS')
+//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+//   if (req.method === 'OPTIONS') {
+//     return res.sendStatus(200)
+//   }
+//   next()
+// })
 
-app.listen({ port }, () => {
+app.listen({ port }, '0.0.0.0', () => {
   console.log(
     `🚀 Server ready at http://localhost:${port}/home (${new Date().toLocaleString()})`
   )

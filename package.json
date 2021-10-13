@@ -10,10 +10,14 @@
     ]
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "babel-node -r dotenv/config --experimental-modules --es-module-specifier-resolution=node app.js",
-    "start": "nodemon --exec babel-node app.js --ext js,graphql",
-    "build": "babel -d ./build ./server"
+    "startdev": "babel-node -r dotenv/config --experimental-modules --es-module-specifier-resolution=node src/app.js",
+    "devstart": "babel-node src/app.js",
+    "postinstall": "npm run build",
+    "start": "node ./build/app",
+    "build": "npm run babel-build",
+    "babel-build": "./node_modules/.bin/babel -d build src -s",
+    "clean": "rm -r build && mkdir build",
+    "dev": "nodemon --exec babel-node src/app.js --ext js,graphql"
   },
   "keywords": [
     "Nodejs"
