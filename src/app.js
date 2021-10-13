@@ -39,9 +39,6 @@ if (!process.env.NAMES || !process.env.AGES) {
 
 console.log(persons)
 
-app.set('view engine', 'ejs')
-app.set('views', './src/views')
-
 const whitelist =
   process.env.CORS_WHITELIST.split(' ')[0] !== ''
     ? process.env.CORS_WHITELIST.split(' ')
@@ -128,4 +125,3 @@ mongoose
   .catch((err) => {
     console.log(err)
   })
-  
